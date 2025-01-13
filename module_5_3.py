@@ -18,34 +18,60 @@ class House:
         return f" Название: {self.name}, количество этажей: {self.floors}"
 
     def __eq__(self, other):
-        return self.floors == other.floors
+        if isinstance(other, House):
+            return self.floors == other.floors
+        else:
+            return False
 
     def __lt__(self, other):
-        return self.floors < other.floors
+        if isinstance(other, House):
+            return self.floors < other.floors
+        elif isinstance(other, int):
+            return self.floors < other
+
 
     def __le__(self, other):
-        return self.floors <= other.floors
+        if isinstance(other, House):
+            return self.floors <= other.floors
+        elif isinstance(other, int):
+            return self.floors <= other
+
 
     def __gt__(self, other):
-        return self.floors > other.floors
+        if isinstance(other, House):
+            return self.floors > other.floors
+        elif isinstance(other, int):
+            return self.floors > other
+
 
     def __ge__(self, other):
-        return self.floors >= other.floors
+        if isinstance(other, House):
+            return self.floors >= other.floors
+        elif isinstance(other, int):
+            return self.floors >= other
+
 
     def __ne__(self, other):
-        return self.floors != other.floors
+        if isinstance(other, House):
+            return self.floors != other.floors
+        elif isinstance(other, int):
+            return self.floors != other
+
 
     def __add__(self, value):
-        self.floors = self.floors + value
-        return self
+        if isinstance(value, int):
+            self.floors = self.floors + value
+            return self
 
     def __iadd__(self, value):
-        self.floors += value
-        return self
+        if isinstance(value, int):
+            self.floors += value
+            return self
 
     def __radd__(self, value):
-        self.floors = value + self.floors
-        return self
+        if isinstance(value, int):
+            self.floors = value + self.floors
+            return self
 
 
 h1 = House("Бурдж-Халифа", 163)
@@ -67,3 +93,4 @@ print(h1 >= h2) # __ge__
 print(h1 < h2) # __lt__
 print(h1 <= h2) # __le__
 print(h1 != h2) # __ne__
+print(h1 < 14)
